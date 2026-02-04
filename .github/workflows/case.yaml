@@ -1,0 +1,20 @@
+name: case and containe
+on:
+  workflow_dispatch:
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run only if branch name contains "feature"
+        if: contains(github.ref, 'feature')
+        run: echo "This is a feature branch"
+  example1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run only if OS is in allowed list
+        if: contains(['ubuntu-latest','windows-latest'], runner.os)
+        run: echo "OS is allowed: ${{ runner.os }}"
+        
