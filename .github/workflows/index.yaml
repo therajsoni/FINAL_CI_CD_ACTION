@@ -3,6 +3,6 @@ on:
  workflow_dispatch:
 jobs:
    first:
-       runs-on: uubuntu-latest
+       runs-on: ubuntu-latest
        steps:
            - run: echo "hello rajsoni"
