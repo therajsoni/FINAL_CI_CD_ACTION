@@ -1,0 +1,12 @@
+name: Container Args Example
+
+on:
+  workflow_dispatch:
+jobs:
+  redis-test:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Run container with args
+       uses: docker://ubuntu:22.04
+       with:
+        args: sleep 10
