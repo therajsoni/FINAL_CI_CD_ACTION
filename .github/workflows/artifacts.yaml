@@ -1,0 +1,13 @@
+name: artifacts
+on:
+  workflow_dispatch:
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload build artifacts
+        if: github.head_ref == 'main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-file
+          path: hate.js
