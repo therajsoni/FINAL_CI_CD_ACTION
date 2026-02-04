@@ -8,6 +8,7 @@ jobs:
        - run: exit 1
   notify:
      runs-on: ubuntu-latest
+     needs: fail-job
      if: failure()
      steps:
        - uses: dawidd6/action-send-mail@v3
@@ -22,6 +23,7 @@ jobs:
            body: "Test"
   notify-mul:
      runs-on: ubuntu-latest
+     needs: fail-job
      if: failure()
      steps:
        - uses: dawidd6/action-send-mail@v3
