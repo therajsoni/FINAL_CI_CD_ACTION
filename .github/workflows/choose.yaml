@@ -1,0 +1,17 @@
+name: choose options
+on: 
+   workflow_dispatch:
+    inputs:
+        env:
+          default: dev
+          type: choice
+          options:
+            - dev
+            - prod
+            - test
+            - build
+jobs:
+  prod-choose:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{inputs.env}}"
