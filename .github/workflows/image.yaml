@@ -1,0 +1,32 @@
+name: Redis Container Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  redis-test:
+    runs-on: ubuntu-latest
+
+    # Define a service container (Redis)
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    steps:
+      # Step 1: Checkout code (optional)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Redis CLI on the runner
+      - name: Install Redis CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y redis-tools
+
+      # Step 3: Ping Redis using redis-cli
+      - name: Ping Redis
+        run: |
+          echo "Pinging Redis..."
+          redis-cli -h localhost -p 6379 ping
