@@ -1,0 +1,36 @@
+name: emailsend
+on:
+  workflow_dispatch: 
+jobs:
+  fail-job:
+     runs-on: ubuntu-latest
+     steps:
+       - run: exit 1
+  notify:
+     runs-on: ubuntu-latest
+     if: failure()
+     steps:
+       - uses: dawidd6/action-send-mail@v3
+         with:
+           server_address: smtp.gmail.com
+           server_port: 587
+           username: ${{secrets.username}}
+           password: ${{secrets.password}}
+           subject: "Test"
+           to: ${{secrets.to_email_single}}
+           from: Github Action
+           body: "Test"
+  notify-mul:
+     runs-on: ubuntu-latest
+     if: failure()
+     steps:
+       - uses: dawidd6/action-send-mail@v3
+         with:
+           server_address: smtp.gmail.com
+           server_port: 587
+           username: ${{secrets.username}}
+           password: ${{secrets.password}}
+           subject: "Test"
+           to: ${{secrets.to_email_multiple}}
+           from: Github Action
+           body: "Test"           
