@@ -1,0 +1,14 @@
+name: output
+on: 
+ workflow_dispatch:
+jobs:
+  jobA:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set version
+        id: set_version
+        run: echo "version_test2=2.0.1" >> $GITHUB_OUTPUT
+      - name: use version
+        run: |
+             echo "The version is ${{steps.set_version.outputs.version_test2}}"
+             echo "All Outputs is ${{steps.set_version.outputs}}"
