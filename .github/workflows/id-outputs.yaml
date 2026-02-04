@@ -1,0 +1,14 @@
+name: id and outputs
+on:
+ workflow_dispatch: 
+jobs:
+  basic-id:
+     runs-on: ubuntu-latest
+     steps:
+       - name: generate version
+         id: version_step
+         run: echo "version_test=9.9" >> $GITHUN_ENV
+       - name: use version
+         run: echo "The version is $version_test"
+       - name: use as outputs
+         run: echo "version from step id version step is ${{ steps.version_step.outputs.version }}" 
