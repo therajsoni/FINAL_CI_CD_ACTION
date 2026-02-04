@@ -1,0 +1,13 @@
+name: outcome
+on:
+  workflow_dispatch:
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail but continue
+        run: exit 1
+        continue-on-error: true
+
+      - name: Check previous step outcome
+        run: echo "Previous step outcome: ${{ steps['Fail but continue'].outcome }}"
