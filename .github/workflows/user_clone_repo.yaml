@@ -9,3 +9,4 @@ jobs:
         with:
           repository: therajsoni/Auction
           token: ${{secrets.GTIHUB_TOKEN}}
+      - run: echo "ls -ltr"    
