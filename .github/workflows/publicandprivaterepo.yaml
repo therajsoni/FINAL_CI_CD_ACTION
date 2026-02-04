@@ -1,0 +1,14 @@
+name: privatepublic
+on: 
+  workflow_dispatch: 
+jobs:
+  job1:
+     if: github.event.repository.private == false
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo "Raj Soni it is public repo"
+  job2:
+     if: github.event.repository.private == true 
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo "it is private repo"
