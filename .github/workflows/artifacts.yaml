@@ -11,3 +11,11 @@ jobs:
         with:
           name: test-file
           path: hate.js
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-file
+          path: ./rate.js
