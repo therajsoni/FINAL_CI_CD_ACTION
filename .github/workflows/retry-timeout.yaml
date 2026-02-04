@@ -1,0 +1,26 @@
+name: retry-timeout-needs
+on:
+  workflow_dispatch:
+jobs:
+  timeoutfor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5   # Job will fail if it runs more than 5 minutes
+    steps:
+      - name: Run something
+        run: sleep 600
+  timeo:
+   runs-on: ubuntu-latest
+   steps:   
+        - name: Ping Redis with timeout and retry
+          run: |
+            retries=5
+            count=0
+            until timeout 10s redis-cli -h localhost ping; do
+            count=$((count+1))
+            echo "Attempt $count failed, retrying..."
+            if [ $count -ge $retries ]; then
+            echo "All retries failed."
+            exit 1
+            fi
+            sleep 5
+            done
