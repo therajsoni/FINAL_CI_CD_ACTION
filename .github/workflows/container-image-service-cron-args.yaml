@@ -1,9 +1,9 @@
 name: nightly-test
 
 on:
-  schedule:
-    - cron: '1 * * * *'   
-
+  # schedule:
+  #   - cron: '1 * * * *'   
+  workflow_dispatch: 
 jobs:
   test:
     runs-on: ubuntu-latest
