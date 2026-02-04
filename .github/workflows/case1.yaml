@@ -1,0 +1,28 @@
+name: case
+on:
+ workflow_dispatch:
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Branch specific actions
+        run: |
+          branch=${GITHUB_REF##*/}
+          case "$branch" in
+            main)
+              echo "Deploying to production"
+              ;;
+            develop)
+              echo "Deploying to staging"
+              ;;
+            feature/*)
+              echo "Running feature tests"
+              ;;
+            *)
+              echo "Unknown branch"
+              ;;
+          esac
+ 
