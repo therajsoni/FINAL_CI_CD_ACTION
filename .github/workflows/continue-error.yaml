@@ -17,4 +17,9 @@ jobs:
       cancel-in-progress: false         # Let multiple jobs run
     steps:
       - run: echo "This is job2 for branch ${GITHUB_REF}"
-  
+  optional-job:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - run: exit 1
+   
