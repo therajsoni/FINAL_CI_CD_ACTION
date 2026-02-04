@@ -1,0 +1,19 @@
+name: pull push event
+on: 
+  workflow_dispatch: 
+  pull_request:
+  push:
+    
+jobs:
+  pull:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "pull"
+ 
+  push:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "push"
+    
