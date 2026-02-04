@@ -1,0 +1,15 @@
+name: print name 
+on: 
+   workflow_dispatch:
+        inputs:
+           name: 
+              default: "hukum"
+              type: string
+              required: true
+              description: "Plase Enter The Name" 
+              
+jobs:
+   nameprint:
+          runs-on: ubuntu-latest
+          steps:
+             - run: echo "Raj Soni"
