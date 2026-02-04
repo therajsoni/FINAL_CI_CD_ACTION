@@ -1,0 +1,22 @@
+name: permission
+on:
+  workflow_dispatch:
+jobs:
+  read-only-job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read    # Only read repo content
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "This job can only read contents and issues"
+
+  write-job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # Can push commits
+      issues: write     # Can modify issues
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "This job can modify repo contents and issues"
+  
