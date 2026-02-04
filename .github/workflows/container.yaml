@@ -1,0 +1,21 @@
+name: Container Job Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  redis-test:
+    runs-on: ubuntu-latest
+    container:
+      image: redis:7
+
+    steps:
+      # Step 1: Checkout code (optional)
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Step 2: Run a command inside the container
+      - name: Ping Redis
+        run: |
+          echo "Pinging Redis..."
+          redis-cli ping
