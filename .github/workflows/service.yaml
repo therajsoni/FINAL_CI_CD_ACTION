@@ -1,4 +1,4 @@
-name: redis-service
+name: redis-nginx-service
 on:
   workflow_dispatch:
 
@@ -10,9 +10,17 @@ jobs:
         image: redis:7
         ports:
           - 6379:6379
+      nginx:
+        image: nginx:latest
+        ports:
+          - 8080:80      
     steps:
       - name: Install Redis CLI
         run: sudo apt-get update && sudo apt-get install -y redis-tools
 
       - name: Ping Redis
         run: redis-cli -h localhost -p 6379 ping
+
+      - name: Check Nginx
+        run: curl -I http://localhost:8080
+   
