@@ -1,0 +1,10 @@
+name: pull push event 
+on: 
+  pull_request:
+     branches: 
+          - main
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ubuntu"
