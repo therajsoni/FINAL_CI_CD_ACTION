@@ -1,0 +1,17 @@
+name: conclusion
+on:
+  workflow_dispatch:
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail but continue
+        run: exit 1
+        continue-on-error: true
+
+      - name: Check step outcome
+        run: echo "Step outcome: ${{ steps['Fail but continue'].outcome }}"
+
+      - name: Check job conclusion
+        run: echo "Job conclusion: ${{ job.conclusion }}"
+  
