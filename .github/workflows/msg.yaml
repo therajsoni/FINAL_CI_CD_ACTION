@@ -1,0 +1,22 @@
+name: msgs
+on:
+  workflow_dispatch:
+jobs:
+  success_:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "success for"
+        if: success()
+      - run: echo "failure for"
+        if: failure()
+      - run: echo "always"
+        if: always()
+      - run: echo "never"
+        if: false
+      - run: echo "cancelled"
+        if: cancelled()
+      - run: "success ||failure"
+        if: success() || failure()
+      - run: "rate"
+        if: failure() && github.ref == '/refs/heads/main'
+      - run: exit 1 
