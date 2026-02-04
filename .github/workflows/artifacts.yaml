@@ -1,21 +1,35 @@
 name: artifacts
+
 on:
   workflow_dispatch:
+
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload build artifacts
-        if: github.head_ref == 'main'
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Upload JS file only from main
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
-          name: test-file
-          path: hate.js
+          name: js-files
+          path: |
+            hate.js
+            rate.js
+
   job2:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload build artifacts
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Debug - list files
+        run: ls -l
+
+      - name: Upload build folder
         uses: actions/upload-artifact@v4
         with:
-          name: test-file
+          name: build-folder
           path: build/
